@@ -18,6 +18,7 @@ def print_ascii_art():
            `"`
     Creado por DST
     GitHub: https://github.com/DISTinTheHouse
+    License: MIT
     """
     print(ascii_art)
 
