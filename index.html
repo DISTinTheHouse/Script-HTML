@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocalización</title>
+</head>
+<body>
+    <h1>Obtener Ubicación</h1>
+    <button id="getLocation">Obtener Ubicación</button>
+    <p id="result"></p>
+
+    <script>
+        // JavaScript para obtener la ubicación
+        document.getElementById('getLocation').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        // Éxito en la obtención de la posición
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        document.getElementById('result').textContent = `Latitud: ${latitude}, Longitud: ${longitude}`;
+                        console.log(`Latitud: ${latitude}, Longitud: ${longitude}`);
+                    },
+                    function(error) {
+                        // Manejo de errores
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                document.getElementById('result').textContent = 'Permiso denegado por el usuario.';
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                document.getElementById('result').textContent = 'Información de ubicación no disponible.';
+                                break;
+                            case error.TIMEOUT:
+                                document.getElementById('result').textContent = 'La solicitud para obtener la ubicación ha caducado.';
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                document.getElementById('result').textContent = 'Error desconocido.';
+                                break;
+                        }
+                        console.error(`Error ${error.code}: ${error.message}`);
+                    }
+                );
+            } else {
+                document.getElementById('result').textContent = 'La geolocalización no es soportada por este navegador.';
+            }
+        });
+    </script>
+</body>
+</html>
