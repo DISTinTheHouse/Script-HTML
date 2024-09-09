@@ -23,3 +23,10 @@ The Simple HTML Server with User Tracking is a Python-based server application t
    ```bash
    git clone https://github.com/DISTinTheHouse/Script-HTML.git
    cd Script-HTML
+
+2. **Run the script**
+    ```bash
+   Open the terminal and...
+   python3 server.py
+   or
+   python server.py
