@@ -3,6 +3,7 @@ import socketserver
 import socket
 from datetime import datetime
 import requests
+import json
 
 def print_ascii_art():
     ascii_art = """
@@ -18,7 +19,6 @@ def print_ascii_art():
            `"`
     Creado por DST
     GitHub: https://github.com/DISTinTheHouse
-    License: MIT
     """
     print(ascii_art)
 
@@ -71,9 +71,37 @@ class CustomHandler(http.server.SimpleHTTPRequestHandler):
         # Registra detalles en un archivo .txt
         with open("access_log.txt", "a") as log_file:
             log_file.write(log_entry)
-        
+
         # Y en consola
         print(log_entry)
+
+    def do_POST(self):
+        if self.path == '/location':
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            data = json.loads(post_data.decode('utf-8'))
+            latitude = data.get('latitude')
+            longitude = data.get('longitude')
+            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            log_entry = (
+                f"Timestamp: {timestamp}\n"
+                f"Latitud: {latitude}\n"
+                f"Longitud: {longitude}\n"
+                "----------------------------------------\n"
+            )
+            
+            # Registra coordenadas en el archivo .txt
+            with open("access_log.txt", "a") as log_file:
+                log_file.write(log_entry)
+            
+            # Responde al cliente
+            self.send_response(200)
+            self.send_header('Content-type', 'text/plain')
+            self.end_headers()
+            response_message = 'Ubicación recibida y registrada'
+            self.wfile.write(response_message.encode('utf-8'))  
+        else:
+            super().do_POST()
 
 # Obtén la IP local
 local_ip = get_local_ip()
