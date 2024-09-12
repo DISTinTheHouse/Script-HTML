@@ -115,6 +115,7 @@ with socketserver.TCPServer((local_ip, PORT), CustomHandler) as httpd:
 
 
 ##ALTA CALIBRAR ip PERSONAL Y PUBLICA
+# FALTA AGREGAR VIDEO YOUTUBE
 
 ##FORMATO PARA HTML Y SERVIDOR:
 # import socket
