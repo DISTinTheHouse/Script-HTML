@@ -114,6 +114,7 @@ with socketserver.TCPServer((local_ip, PORT), CustomHandler) as httpd:
     httpd.serve_forever()
 
 
+##ALTA CALIBRAR ip PERSONAL Y PUBLICA
 
 ##FORMATO PARA HTML Y SERVIDOR:
 # import socket
