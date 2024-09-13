@@ -11,20 +11,20 @@ def print_ascii_art():
        .-'     `-.
      .'           `.
     /   _.._   _.._   \\
-   |   /    \\ /    \\   |  
+   |   /    \\ /    \\   |
    |   \\    / \\    /   |
     \\   `--'   `--'   /
      `.           .'
        `-._   _.-'
            `"`
-           
     Creado por DST
     GitHub: https://github.com/DISTinTheHouse
+    License: MIT
 
 .------..------..------..------..------..------.
 |S.--. ||C.--. ||R.--. ||I.--. ||P.--. ||T.--. |
-| :/\: || :/\: || :(): || (\/) || :/\: || :/\: |
-| :\/: || :\/: || ()() || :\/: || (__) || (__) |
+| :/\\: || :/\\: || :(): || (\\/): || :/\\: || :/\\: |
+| :\\/ : || :\\/ : || ()() || :\\/ : || (__) || (__) |
 | '--'S|| '--'C|| '--'R|| '--'I|| '--'P|| '--'T|
 `------'`------'`------'`------'`------'`------'
     """
@@ -32,7 +32,7 @@ def print_ascii_art():
 
 print_ascii_art()
 
-PORT = 8000
+PORT = 8080
 
 # Detecta auto IP local
 def get_local_ip():
@@ -120,60 +120,3 @@ with socketserver.TCPServer((local_ip, PORT), CustomHandler) as httpd:
     print("Presiona Ctrl+C para detener el servidor.")
     # Ejecuta el servidor hasta que lo detengas manualmente
     httpd.serve_forever()
-
-
-##ALTA CALIBRAR ip PERSONAL Y PUBLICA
-# FALTA AGREGAR VIDEO YOUTUBE
-
-##FORMATO PARA HTML Y SERVIDOR:
-# import socket
-# import requests
-# from datetime import datetime
-# from django.shortcuts import render
-
-# # Función para obtener la IP local
-# def get_local_ip():
-#     hostname = socket.gethostname()
-#     local_ip = socket.gethostbyname(hostname)
-#     return local_ip
-
-# # Función para obtener la IP pública
-# def get_public_ip():
-#     try:
-#         response = requests.get('https://api.ipify.org?format=json')
-#         ip_data = response.json()
-#         return ip_data['ip']
-#     except requests.RequestException as e:
-#         print(f"Error al obtener IP pública: {e}")
-#         return None
-
-# # Vista test8 que se ejecuta al acceder a la URL (sin método POST)
-# def test8(request):
-#     # Obtener IP local y pública
-#     client_ip = get_local_ip()
-#     public_ip = get_public_ip()
-
-#     # Obtener información del cliente desde los headers
-#     user_agent = request.headers.get('User-Agent', 'Desconocido')
-#     accept_language = request.headers.get('Accept-Language', 'Desconocido')
-#     timezone = request.headers.get('Time-Zone', 'Desconocido')
-
-#     # Timestamp de la solicitud
-#     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-#     # Registrar la información en un archivo de texto
-#     log_entry = (
-#         f"Timestamp: {timestamp}\n"
-#         f"IP Local: {client_ip}\n"
-#         f"IP Pública: {public_ip}\n"
-#         f"User-Agent: {user_agent}\n"
-#         f"Accept-Language: {accept_language}\n"
-#         f"Time-Zone: {timezone}\n"
-#         "----------------------------------------\n"
-#     )
-
-#     with open("access_log.txt", "a") as log_file:
-#         log_file.write(log_entry)
-
-#     # Renderizar la página HTML
-#     return render(request, 'cualquier_html.html')
