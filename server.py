@@ -176,4 +176,4 @@ with socketserver.TCPServer((local_ip, PORT), CustomHandler) as httpd:
 #         log_file.write(log_entry)
 
 #     # Renderizar la página HTML
-#     return render(request, 'calidad/calidad.html')
+#     return render(request, 'cualquier_html.html')
